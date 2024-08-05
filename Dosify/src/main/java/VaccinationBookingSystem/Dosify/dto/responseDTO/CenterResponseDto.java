@@ -1,14 +1,19 @@
 package VaccinationBookingSystem.Dosify.dto.responseDTO;
 
+import VaccinationBookingSystem.Dosify.Enum.CenterType;
+import jakarta.persistence.Entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class UserResponseDto {
+public class CenterResponseDto {
     String name;
-    String message;
+
+    String location;
+
+    CenterType centerType;
 }

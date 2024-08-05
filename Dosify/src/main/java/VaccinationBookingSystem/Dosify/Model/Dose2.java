@@ -2,10 +2,7 @@ package VaccinationBookingSystem.Dosify.Model;
 
 import VaccinationBookingSystem.Dosify.Enum.VaccineType;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -15,7 +12,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Does2 {
+@Builder
+public class Dose2 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;

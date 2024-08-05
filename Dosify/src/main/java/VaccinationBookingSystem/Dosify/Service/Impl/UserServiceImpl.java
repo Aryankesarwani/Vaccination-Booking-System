@@ -6,6 +6,7 @@ import VaccinationBookingSystem.Dosify.Service.UserService;
 import VaccinationBookingSystem.Dosify.dto.requestDTO.UpdateRequestDto;
 import VaccinationBookingSystem.Dosify.dto.requestDTO.UserRequestDto;
 import VaccinationBookingSystem.Dosify.dto.responseDTO.UserResponseDto;
+import VaccinationBookingSystem.Dosify.transformer.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,21 +16,20 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     public UserResponseDto addUser(UserRequestDto userRequestDto) {
         //convert request dto to entity
-        User user = new User();
-        user.setName(userRequestDto.getName());
-        user.setAge(userRequestDto.getAge());
-        user.setEmailId(userRequestDto.getEmailId());
-        user.setContact(userRequestDto.getContact());
-        user.setGender(userRequestDto.getGender());
+//        User user = new User();
+//        user.setName(userRequestDto.getName());
+//        user.setAge(userRequestDto.getAge());
+//        user.setEmailId(userRequestDto.getEmailId());
+//        user.setContact(userRequestDto.getContact());
+//        user.setGender(userRequestDto.getGender());
+        User user = UserTransformer.UserRequestDtotoUser(userRequestDto);
 
         //save the user in db
         User savedUser = userRepository.save(user);
 
         //entity to response Dto
-        UserResponseDto userResponseDto = new UserResponseDto();
-        userResponseDto.setName(savedUser.getName());
-        userResponseDto.setMessage("Congrats! you have registered on Dosify");
-        return userResponseDto;
+        return UserTransformer.UsertoUserResponseDto(savedUser);
+
     }
 
     @Override

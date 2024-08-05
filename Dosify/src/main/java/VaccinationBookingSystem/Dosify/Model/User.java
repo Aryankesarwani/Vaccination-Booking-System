@@ -2,10 +2,7 @@ package VaccinationBookingSystem.Dosify.Model;
 
 import VaccinationBookingSystem.Dosify.Enum.Gender;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.ArrayList;
@@ -17,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "user")
+@Builder
 public class User {
 
     @Id
@@ -51,5 +49,5 @@ public class User {
     Dose1 dose1;
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-    Does2 dose2;
+    Dose2 dose2;
 }
