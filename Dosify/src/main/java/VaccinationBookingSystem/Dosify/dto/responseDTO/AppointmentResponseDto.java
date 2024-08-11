@@ -1,6 +1,7 @@
 package VaccinationBookingSystem.Dosify.dto.responseDTO;
 
 import VaccinationBookingSystem.Dosify.Enum.DoseNo;
+import VaccinationBookingSystem.Dosify.Enum.VaccineType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 public class AppointmentResponseDto {
 
     String userName;
+
     String appointmentNo;
 
     Date appointmentDate;
@@ -23,6 +25,6 @@ public class AppointmentResponseDto {
 
     String doctorName;
 
-
+    VaccineType vaccineType;
 
 }

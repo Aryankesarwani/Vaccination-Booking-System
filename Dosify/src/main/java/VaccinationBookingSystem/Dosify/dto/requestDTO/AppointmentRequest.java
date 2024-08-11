@@ -15,9 +15,9 @@ public class AppointmentRequest {
 
     DoseNo doseNo;
 
-    int userId;
+    Integer userId;
 
-    int doctorId;
+    Integer doctorId;
 
     VaccineType vaccineType;
 }

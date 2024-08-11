@@ -27,6 +27,11 @@ public class userController {
         //return new ResponseEntity<>(userResponseDto,HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("find_by_id")
+    public UserResponseDto getByID(@RequestParam Integer id){
+        return userService.getByID(id);
+    }
+
     //update the name of user based on mobile number
 
     @PutMapping("/updateUser")

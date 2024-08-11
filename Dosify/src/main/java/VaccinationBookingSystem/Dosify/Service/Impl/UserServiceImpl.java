@@ -10,6 +10,8 @@ import VaccinationBookingSystem.Dosify.transformer.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -40,6 +42,15 @@ public class UserServiceImpl implements UserService {
         userResponseDto.setMessage("User '"+userResponseDto.getName()+"' found successfully.");
         return userResponseDto;
     }
+    @Override
+    public UserResponseDto getByID(Integer id) {
+        Optional<User> user = userRepository.findById(id);
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setName(user.get().getName());
+        userResponseDto.setMessage("User '"+userResponseDto.getName()+"' found successfully.");
+        return userResponseDto;
+    }
+
 
     @Override
     public UserResponseDto UpdateUser(String contact, UpdateRequestDto updateRequestDto) {
@@ -51,5 +62,7 @@ public class UserServiceImpl implements UserService {
 
         return userResponseDto;
     }
+
+
 
 }
