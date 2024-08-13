@@ -14,6 +14,8 @@ import VaccinationBookingSystem.Dosify.exceptions.DoseNotTakenException;
 import VaccinationBookingSystem.Dosify.exceptions.UserNotFoundException;
 import VaccinationBookingSystem.Dosify.transformer.AppointmentTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import javax.print.Doc;
@@ -29,6 +31,9 @@ public class AppointmentServiceImpl implements AppointmentService {
     Dose1Service dose1Service;
     @Autowired
     Dose2Service dose2Service;
+
+    @Autowired
+    private JavaMailSender emailSender;
     @Override
     public AppointmentResponseDto bookAppointment(AppointmentRequest appointmentRequest) throws UserNotFoundException, DoctorNotFoundException, DoseNotTakenException {
 
@@ -69,6 +74,14 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 //        doctor.getAppointments().add(appointment);
         user.getAppointments().add(appointment);
+
+        String text = "Congrats!! "+user.getName()+"you have booked your appointment " +appointmentRequest.getDoseNo()+"successfully!!";
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("aryan.kesarwani1801@gmail.com");
+        message.setTo(user.getEmailId());
+        message.setSubject("Appointment Booked!!");
+        message.setText(text);
+        emailSender.send(message);
 
 
         User SavedUser = userRepository.save(appointment.getUser()); // saves dose1,dose2 and appointment
