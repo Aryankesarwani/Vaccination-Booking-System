@@ -8,4 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CenterService {
     public CenterResponseDto addCenter(CenterRequestDto centerRequestDto);
+
+
 }
